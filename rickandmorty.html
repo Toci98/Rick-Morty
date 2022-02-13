@@ -5,7 +5,7 @@
             function crearDivs(name,id, image){ 
                 var div = document.createElement("div");
                 div.id = id;
-                div.textContent = name;
+                div.textContent = name
                 imageAux = "url(" + image +")"; 
                 div.style.backgroundImage = imageAux;
                 document.getElementById("body").appendChild(div);
@@ -13,7 +13,7 @@
             function buscar(){
                 for (var j = 1; j < 1000; j++) { 
                     if(document.getElementById(j) === null){
-                        console.log("Ok");
+                        
                     }else{
                     document.getElementById(j).remove();
                     }
@@ -31,7 +31,7 @@
         <style>
             #body{
                 height:auto;
-                background-color: rgb(27, 25, 25);
+                background-color: white;
                 display: flex;
                 flex-wrap:wrap;
                 flex-direction:inherit;
@@ -46,13 +46,14 @@
                 flex-wrap: wrap;
                 flex-direction:row;
                 justify-content: space-around;
+                margin-left: 40%;
             }
             #label{
                 margin-top: 6px;
             }
             #body > div{
                 padding-top: 17px;
-                height: 250px;
+                height: 200px;
                 width: 100px;
                 border: 1px solid black;
                 border-radius: 5px;
@@ -68,7 +69,7 @@
         </style>
     </head>
 
-    <body>
+    <body onload="buscar()">
         <title>Rick And Morty</title>
         <div id="barra">
             <label id="label" for="busqueda">Buscar un personaje:</label>
