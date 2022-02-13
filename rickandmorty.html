@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            function crearDivs(name,id, image){ 
+                var div = document.createElement("div");
+                div.id = id;
+                div.textContent = name;
+                imageAux = "url(" + image +")"; 
+                div.style.backgroundImage = imageAux;
+                document.getElementById("body").appendChild(div);
+            }
+            function buscar(){
+                for (var j = 1; j < 1000; j++) { 
+                    if(document.getElementById(j) === null){
+                        console.log("Ok");
+                    }else{
+                    document.getElementById(j).remove();
+                    }
+                }
+                console.log(document.getElementById("busqueda").value);
+                var jps;
+                fetch('https://rickandmortyapi.com/api/character/?name='+ document.getElementById("busqueda").value).then(response => response.json()).then((data)=> {
+                    console.log(data);
+                    for (var i = 0; i < data.info.count; i++) {
+                        crearDivs(data.results[i].name,data.results[i].id,data.results[i].image)
+                    }
+                });
+            }
+        </script>
+        <style>
+            #body{
+                height:auto;
+                background-color: rgb(27, 25, 25);
+                display: flex;
+                flex-wrap:wrap;
+                flex-direction:inherit;
+                justify-content: space-around;
+            }
+            #barra{
+                height: 30px;
+                width: 400px;
+                margin: 2px;
+                background-color: white;
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction:row;
+                justify-content: space-around;
+            }
+            #label{
+                margin-top: 6px;
+            }
+            #body > div{
+                padding-top: 17px;
+                height: 250px;
+                width: 100px;
+                border: 1px solid black;
+                border-radius: 5px;
+                font-size: 40px;
+                text-align: center;
+                flex-basis: 30%;
+                flex-grow: 1;
+                margin: 5px;
+                vertical-align: middle;
+                max-width: 320px;
+                background-position: center;
+            }
+        </style>
+    </head>
+
+    <body>
+        <title>Rick And Morty</title>
+        <div id="barra">
+            <label id="label" for="busqueda">Buscar un personaje:</label>
+            <input type="text" id="busqueda">
+            <button onclick="buscar()">Buscar</button>
+        </div>
+        <div id="body">
+            
+        </div>
+        <div id="search"></div>
+    </body>
+</html>
